@@ -1,0 +1,26 @@
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+python
+test_venv
+receipt.pdf
+fpdf
+boto3
+libraries.zip
+
+# Serverless directories
+.serverless
