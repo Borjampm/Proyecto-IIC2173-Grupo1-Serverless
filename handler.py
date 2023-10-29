@@ -4,6 +4,7 @@ import uuid
 import time
 import json
 
+
 def lambda_handler(event, context):
     # Check if it's an HTTP OPTIONS (preflight) request
     if event["httpMethod"] == "OPTIONS":
@@ -22,16 +23,17 @@ def lambda_handler(event, context):
     if event["httpMethod"] == "POST":
         # Parse the request body
         request_body = json.loads(event["body"])
-        
+
         # Access the data sent in the POST request
         group = request_body.get("group")
         user = request_body.get("user")
-        
+
         # Create a PDF document
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font("Arial", size=12)
-        pdf.cell(200, 10, txt=f"Hello, this is a PDF created with FPDF\n{group} {user}", ln=True, align='C')
+        pdf.cell(
+            200, 10, txt=f"Hello, this is a PDF created with FPDF\n{group} {user}", ln=True, align='C')
 
         # Save the PDF to a file
         pdf_content = pdf.output(dest='S').encode('latin1')
@@ -42,12 +44,9 @@ def lambda_handler(event, context):
 
         s3 = boto3.client("s3")
 
-
-
-        
-
         try:
-            s3.put_object(Bucket=bucket_name, Key=s3_object_key, Body=pdf_content)
+            s3.put_object(Bucket=bucket_name,
+                          Key=s3_object_key, Body=pdf_content)
             url = s3.generate_presigned_url(
                 ClientMethod='get_object',
                 Params={
