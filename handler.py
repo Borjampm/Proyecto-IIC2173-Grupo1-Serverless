@@ -42,6 +42,10 @@ def lambda_handler(event, context):
 
         s3 = boto3.client("s3")
 
+
+
+        
+
         try:
             s3.put_object(Bucket=bucket_name, Key=s3_object_key, Body=pdf_content)
             url = s3.generate_presigned_url(
