@@ -23,12 +23,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
-      - name: Install Serverless
-        run: pip install -g serverless
       - name: Create env
         run: python3 -m venv test_venv
       - name: Activate env
         run: source test_venv/bin/activate
+      - name: Install Serverless
+        run: pip install -g serverless
       - name: Make boto3 directory
         run: mkdir boto3 
       - name: Install boto3
