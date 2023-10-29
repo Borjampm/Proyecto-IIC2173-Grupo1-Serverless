@@ -28,7 +28,7 @@ jobs:
       - name: Activate env
         run: source test_venv/bin/activate
       - name: Install Serverless
-        run: pip install -g serverless
+        run: pip install serverless
       - name: Make boto3 directory
         run: mkdir boto3 
       - name: Install boto3
