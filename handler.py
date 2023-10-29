@@ -27,7 +27,8 @@ def lambda_handler(event, context):
         # Access the data sent in the POST request
         group = request_body.get("group")
         user = request_body.get("user")
-        text = f"Hello, this is a PDF created with FPDF\n{group} {user}"
+        text = f"Comprobate de compra\nVendedor: grupo {group}"
+        text += f"Comprador: {user}"
 
         # Create a PDF document
         pdf = FPDF()
