@@ -4,6 +4,7 @@ import uuid
 import time
 import json
 
+
 def lambda_handler(event, context):
     # Check if it's an HTTP OPTIONS (preflight) request
     if event["httpMethod"] == "OPTIONS":
