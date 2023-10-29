@@ -27,13 +27,14 @@ def lambda_handler(event, context):
         # Access the data sent in the POST request
         group = request_body.get("group")
         user = request_body.get("user")
+        text = f"Hello, this is a PDF created with FPDF\n{group} {user}"
 
         # Create a PDF document
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font("Arial", size=12)
         pdf.cell(
-            200, 10, txt=f"Hello, this is a PDF created with FPDF\n{group} {user}", ln=True, align='C')
+            200, 10, txt=text, ln=True, align='C')
 
         # Save the PDF to a file
         pdf_content = pdf.output(dest='S').encode('latin1')
