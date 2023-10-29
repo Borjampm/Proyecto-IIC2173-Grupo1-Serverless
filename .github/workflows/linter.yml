@@ -1,16 +1,30 @@
-name: Lint and Commit
-on: [ push, pull_request ]
+name: Lint Workflow
+
+on: [pull_request]
 
 jobs:
   lint:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: API
+
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v2
-    - uses: chartboost/ruff-action@v1
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
-        args: --check .
-        fix_args: --fix .
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: 'style fixes by ruff'
+        node-version: '14'  # You can use a Node.js version compatible with your Python linting tools
+
+    - name: Install dependencies
+      run: |
+        yarn install
+        pip install flake8  # Install Flake8 for Python linting
+
+    - name: Lint with yarn
+      run: yarn lint
+
+    - name: Lint Python files
+      run: flake8 .  # Replace "." with the directory or files you want to lint
