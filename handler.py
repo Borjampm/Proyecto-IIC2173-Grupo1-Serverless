@@ -52,7 +52,7 @@ def lambda_handler(event, context):
 
         # Upload the PDF to an S3 bucket
         bucket_name = "e1-arquisis"
-        s3_object_key = f"pdf/{user}/pdf_{userId}_{date}.pdf"
+        s3_object_key = f"pdf/pdf_{userId}_{date}.pdf"
 
         s3 = boto3.client("s3")
 
