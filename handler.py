@@ -23,6 +23,7 @@ def lambda_handler(event, context):
     if event["httpMethod"] == "POST":
         # Parse the request body
         request_body = json.loads(event["body"])
+        print(request_body, "request body")
 
         # Access the data sent in the POST request
         group = request_body.get("group")
