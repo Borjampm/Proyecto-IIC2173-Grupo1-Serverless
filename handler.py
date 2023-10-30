@@ -31,6 +31,8 @@ def lambda_handler(event, context):
         quantity = request_body.get("quantity")
         price = request_body.get("price")
         totalAmount = request_body.get("totalAmount")
+        date = request_body.get("date")
+        userId = request_body.get("userId")
 
         text = f"Comprobate de compra\nVendedor: grupo {group}"
         text += f"Comprador: {user}"
@@ -50,7 +52,7 @@ def lambda_handler(event, context):
 
         # Upload the PDF to an S3 bucket
         bucket_name = "e1-arquisis"
-        s3_object_key = f"pdf/{user}/pdf_{int(time.time())}_{str(uuid.uuid4())}.pdf"
+        s3_object_key = f"pdf/{user}/pdf_{userId}_{date}.pdf"
 
         s3 = boto3.client("s3")
 
