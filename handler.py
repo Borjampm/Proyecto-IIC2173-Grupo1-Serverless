@@ -43,7 +43,7 @@ def lambda_handler(event, context):
         pdf.cell(
             200, 10, txt=text, ln=True, align='C')
         pdf.cell(
-            200, 10, txt=text, ln=True, align='C')
+            200, 10, txt=text2, ln=True, align='C')
 
         # Save the PDF to a file
         pdf_content = pdf.output(dest='S').encode('latin1')
