@@ -27,13 +27,21 @@ def lambda_handler(event, context):
         # Access the data sent in the POST request
         group = request_body.get("group")
         user = request_body.get("user")
+        company = request_body.get("companyId")
+        quantity = request_body.get("quantity")
+        price = request_body.get("price")
+        totalAmount = request_body.get("totalAmount")
+
         text = f"Comprobate de compra\nVendedor: grupo {group}"
         text += f"Comprador: {user}"
 
+        text2 = f"Detalles de la compra --> Empresa: {company} | Quantity: {quantity} | Price: {price} | Total Amount: {totalAmount}"
         # Create a PDF document
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font("Arial", size=12)
+        pdf.cell(
+            200, 10, txt=text, ln=True, align='C')
         pdf.cell(
             200, 10, txt=text, ln=True, align='C')
 
